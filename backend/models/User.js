@@ -23,6 +23,6 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-const User = mongoose.model("User", userSchema);
+export const User = mongoose.model("User", userSchema);
 
 //In Mongoose, timestamps goes as the second argument to Schema, not inside the fields object.
