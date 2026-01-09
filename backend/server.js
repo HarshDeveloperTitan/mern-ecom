@@ -2,17 +2,16 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+import router from "./routes/authRoutes.js";
 
 const app = express();
 dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors);
+app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use("/api/auth", router);
 
 connectDB();
 

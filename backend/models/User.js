@@ -2,27 +2,11 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-export const User = mongoose.model("User", userSchema);
-
-//In Mongoose, timestamps goes as the second argument to Schema, not inside the fields object.
+export default mongoose.model("User", userSchema);
