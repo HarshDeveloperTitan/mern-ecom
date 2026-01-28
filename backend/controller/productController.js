@@ -20,7 +20,16 @@ export const createProduct = async (req, res) => {
 
 export const getProducts = async (req, res) => {
   try {
-    const products = await Product.find().sort({ createdAt: -1 });
+    const { search, category } = req.query;
+    let filter = {};
+
+    if (search) {
+      filter.title = { $regex: search, $options: "i" }; // Case-insensitive search
+    }
+    if (category) {
+      filter.category = category;
+    }
+    const products = await Product.find(filter).sort({ createdAt: -1 });
 
     res.status(200).json({
       success: true,
